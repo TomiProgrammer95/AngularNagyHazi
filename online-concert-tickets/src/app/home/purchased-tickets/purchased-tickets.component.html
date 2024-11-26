@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Üdvözlünk {{name}}</h1>
+
+  <!-- Ellenőrzés, hogy vannak-e megvásárolt jegyek -->
+  <div *ngIf="ticket.length > 0; else noTickets">
+    <div class="table-responsive mx-auto">
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col" class="text-center">Kategória</th>
+            <th scope="col" class="text-center">Időpont</th>
+            <th scope="col" class="text-center">Előadó</th>
+            <th scope="col" class="text-center">Jegyek</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- A jegyek listájának megjelenítése -->
+          <tr *ngFor="let t of ticket">
+            <td class="text-center">{{ t.category }}</td>
+            <td class="text-center">{{ t.concertDateTime | date:'MMM d, y, h:mm a'}}</td>
+            <td class="text-center">{{ t.concertName }}</td>
+            <td class="text-center">{{ t.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Ha nincs megvásárolt jegy -->
+  <ng-template #noTickets>
+    <div class="alert alert-warning text-center" role="alert">
+      You have not purchased any tickets yet.
+    </div>
+  </ng-template>
+</div>

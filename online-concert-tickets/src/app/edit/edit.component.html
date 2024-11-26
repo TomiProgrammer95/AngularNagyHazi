@@ -1,0 +1,87 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="text-center">Edit Ticket</h2>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <!-- Concert Name -->
+            <div class="mb-3">
+              <label for="concertName" class="form-label">Concert Name</label>
+              <input
+                type="text"
+                id="concertName"
+                class="form-control"
+                [(ngModel)]="concertName"
+                name="concertName"
+                required
+              />
+            </div>
+
+            <!-- Category -->
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <select
+                class="form-select"
+                id="category"
+                [(ngModel)]="category"
+                name="category"
+                required
+              >
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+              </select>
+            </div>
+
+            <!-- Seats Available -->
+            <div class="mb-3">
+              <label for="seatsAvailable" class="form-label">Seats Available</label>
+              <input
+                type="number"
+                id="seatsAvailable"
+                class="form-control"
+                [(ngModel)]="seatsAvailable"
+                name="seatsAvailable"
+                required
+              />
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input
+                type="number"
+                id="price"
+                class="form-control"
+                [(ngModel)]="price"
+                name="price"
+                required
+              />
+            </div>
+
+            <!-- Concert Date & Time -->
+            <div class="mb-3">
+              <label for="concertDateTime" class="form-label">Concert Date & Time</label>
+              <input
+                type="datetime-local"
+                id="concertDateTime"
+                class="form-control"
+                [(ngModel)]="concertDateTime"
+                name="concertDateTime"
+                required
+              />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

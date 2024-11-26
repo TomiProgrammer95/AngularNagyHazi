@@ -1,0 +1,57 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container mt-4">
+  <!-- User Profile Section -->
+  <app-purchase-ticket *ngIf="userLogin"></app-purchase-ticket>
+
+  <!-- Admin Section -->
+  <div *ngIf="adminLogin" class="mb-4">
+    <button *ngIf="!wantToAdd" class="btn btn-success" (click)="wantToAdd = true">
+      Add New Ticket
+    </button>
+    <app-create *ngIf="wantToAdd" class="mt-3"></app-create>
+    <button *ngIf="wantToAdd" class="btn btn-danger mt-2" (click)="wantToAdd = false">
+      Close
+    </button>
+  </div>
+
+  <!-- Tickets Section -->
+  <div class="row g-3">
+    <div class="col-md-4" *ngFor="let ticket of tickets">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ ticket.concertName }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Kategória: {{ ticket.category }}</h6>
+          <p class="card-text">
+            <strong>Dátum:</strong> {{ ticket.concertDateTime | date:'MMM d, y, h:mm a' }}<br>
+            <strong>Szabad hely:</strong> {{ ticket.seatsAvailable }}<br>
+            <strong>Ár:</strong> ${{ ticket.price }}
+          </p>
+        </div>
+        <div class="card-footer text-center">
+          <button
+            class="btn btn-primary me-2"
+            (click)="buy(ticket)"
+            *ngIf="userLogin"
+          >
+            Vásárlás
+          </button>
+          <button
+            class="btn btn-warning me-2"
+            (click)="edit(ticket)"
+            *ngIf="adminLogin"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="delet(ticket.id)"
+            *ngIf="adminLogin && ticket.id"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
